@@ -17,7 +17,7 @@ struct ASFAppInfo: ASFAppInfoBehavior {
     var targetSDK: String {
         var targetSDK = ""
 #if os(iOS) || os(watchOS) || os(tvOS)
-        targetSDK = "\(getIOSVersionMinRequired())"
+        targetSDK = Bundle.main.object(forInfoDictionaryKey: "MinimumOSVersion") as? String ?? "Unknown"
 #elseif os(macOS)
         targetSDK = "\(getMACOSXVersionMinRequired())"
 #else
